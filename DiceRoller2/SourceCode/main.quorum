@@ -1,0 +1,190 @@
+use Libraries.Game.Game
+use Libraries.Compute.Random
+use Libraries.Game.InputMonitor
+use Libraries.Interface.Events.KeyboardEvent
+use Libraries.Game.Graphics.Label
+use Libraries.Game.Graphics.Color
+use Libraries.Sound.Speech
+use Libraries.Game.Graphics.Drawable
+
+//test
+/*
+    This is a default class for creating a game in Quorum. Note that the Main 
+    action begins by calling StartGame(), which loads a window a game can 
+    be displayed in. The action CreateGame is where the game should load any 
+    assets, like images to be displayed, frames of animation, or sounds to be
+    played. 
+*/
+class Main is Game
+    /*
+        This action, Main, starts our computer program. In Quorum, programs always
+        begin from Main.
+    */
+    Drawable box
+    action Main
+        SetScreenSize(1000,500)
+        StartGame()        
+    end
+
+    /*
+        This action sets up the default values for a game. For example, we might
+        use the Libraries.Game.Graphics.Drawable class to load up an image or 
+        a shape. Or, we might add a Libraries.Interface.Button for making something clickable
+        or a Libraries.Interface.TextBox for gathering user input in a game.
+    */
+    action CreateGame
+        box:LoadFilledRectangle(1000,500)        
+        Add(box)
+    end
+
+    /*
+        The update action is called on every "frame" of animation in a game. This
+        action should be used to do operations on items. So, for example, we 
+        might use this action to change frames of animation, to rotate items, 
+        or to make creatures jump.
+    */
+    action Update(number seconds)
+        Random d4
+        Random d6
+        Random d8
+        Random d10
+        Random d12
+        Random d20
+        Random d100 
+
+        Color color
+
+        integer A = d4:RandomIntegerBetween (1, 4)
+        integer B = d6:RandomIntegerBetween (1, 6)
+        integer C = d8:RandomIntegerBetween (1, 8)
+        integer D = d10:RandomIntegerBetween (1, 10)
+        integer E = d20:RandomIntegerBetween (1, 20)
+        integer F = d100:RandomIntegerBetween (1, 100)
+        integer G = d12:RandomIntegerBetween (1, 12)
+
+        KeyboardEvent button
+        InputMonitor im
+
+        Label diceText
+        Speech talk
+        text dice = ""
+        
+        Drawable circle
+
+            if im:IsKeyPressed(button:NUM_4)
+                circle:LoadFilledCircle(200)
+                circle:SetCenter(515, 260)
+                Add(circle)
+                Remove(diceText)
+                dice = cast(text, A)
+                diceText:SetText("D4 " + dice)
+                diceText:SetPosition(500, 250)
+                diceText:SetSize(36)
+                diceText:SetColor(color:Red())
+                talk:Say(dice)
+                Add(diceText)
+            end
+
+            if im:IsKeyPressed(button:R)
+                talk:Say("I will repeat here.")
+            end
+
+            if im:IsKeyPressed(button:C)
+                circle:LoadFilledCircle(200)
+                circle:SetCenter(515, 260)
+                Add(circle)
+                talk:Say("Screen Cleared")
+            end
+
+
+            if im:IsKeyPressed(button:NUM_6) 
+                circle:LoadFilledCircle(200)
+                circle:SetCenter(515, 260)
+                Add(circle)
+                Remove(diceText)
+                dice = cast(text,B)
+                diceText:SetText("D6 " + dice)
+                diceText:SetPosition(500, 250)
+                diceText:SetSize(36)
+                diceText:SetColor(color:Green())
+                Add(diceText)
+                talk:Say(dice)
+            end
+
+            if im:IsKeyPressed(button:NUM_8) 
+                circle:LoadFilledCircle(200)
+                circle:SetCenter(515, 260)
+                Add(circle)
+                Remove(diceText)
+                dice = cast(text,C)
+                diceText:SetText("D8 " + dice)
+                diceText:SetPosition(500, 250)
+                diceText:SetSize(36)
+                diceText:SetColor(color:Blue())
+                Add(diceText)
+                talk:Say(dice)
+            end
+
+            if im:IsKeyPressed(button:NUM_0) 
+                circle:LoadFilledCircle(200)
+                circle:SetCenter(515, 260)
+                Add(circle)
+                Remove(diceText)
+                dice = cast(text,D)
+                diceText:SetText("D10 " + dice)
+                diceText:SetPosition(500, 250)
+                diceText:SetSize(36)
+                diceText:SetColor(color:White())
+                Add(diceText)
+                talk:Say(dice)
+            end
+
+            if im:IsKeyPressed(button:NUM_2) 
+                circle:LoadFilledCircle(200)
+                circle:SetCenter(515, 260)
+                Add(circle)
+                Remove(diceText)
+                dice = cast(text,E)
+                diceText:SetText("D20 " + dice)
+                diceText:SetPosition(500, 250)
+                diceText:SetSize(36)
+                diceText:SetColor(color:Cyan())
+                Add(diceText)
+                talk:Say(dice)
+            end
+
+            if im:IsKeyPressed(button:P) 
+                circle:LoadFilledCircle(300)
+                circle:SetCenter(515, 260)
+                Add(circle)
+                Remove(diceText)
+                dice = cast(text,F)
+                diceText:SetText("Percentage " + dice)
+                diceText:SetPosition(350, 250)
+                diceText:SetSize(36)
+                diceText:SetColor(color:Orange())
+                Add(diceText)
+                talk:Say(dice)
+            end
+
+            if im:IsKeyPressed(button:NUM_1) 
+                circle:LoadFilledCircle(200)
+                circle:SetCenter(515, 260)
+                Add(circle)
+                Remove(diceText)
+                dice = cast(text,G)
+                diceText:SetText("D12 " + dice)
+                diceText:SetPosition(500, 250)
+                diceText:SetSize(36)
+                diceText:SetColor(color:Pink())
+                Add(diceText)
+                talk:Say(dice)
+            end
+
+            if im:IsKeyPressed(button:Q)
+                Exit()
+            end
+            
+
+    end
+end
