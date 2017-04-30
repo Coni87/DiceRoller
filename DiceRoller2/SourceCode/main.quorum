@@ -6,7 +6,6 @@ use Libraries.Game.Graphics.Label
 use Libraries.Game.Graphics.Color
 use Libraries.Sound.Speech
 use Libraries.Game.Graphics.Drawable
-
 //test
 /*
     This is a default class for creating a game in Quorum. Note that the Main 
